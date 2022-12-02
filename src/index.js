@@ -57,6 +57,7 @@ function searchPictures(event) {
 
 function addPictures() {
   pictureAPI.getPicture().then(data => {
+    //console.log(data.hits);
     appendPicteureMarkup(data.hits);
     gallerySimpleLightbox.refresh();
     if (+refs.gallery.children.length === +data.totalHits) {
