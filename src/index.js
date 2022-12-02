@@ -37,15 +37,13 @@ function searchPictures(event) {
     if (inputValue && data.hits.length) {
       appendPicteureMarkup(data.hits);
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-      if (data.hits.length) {
-        refs.btnLoad.style.display = 'block';
-      }
-
+      refs.btnLoad.style.display = 'block';
+      // if (data.hits.length) {
+      //   refs.btnLoad.style.display = 'block';
+      // }
       gallerySimpleLightbox.refresh();
     } else if (inputValue === '') {
-      Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
+      Notiflix.Notify.failure('Please enter a search term.');
     } else {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
