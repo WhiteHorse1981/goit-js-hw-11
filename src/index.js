@@ -30,6 +30,7 @@ function searchPictures(event) {
   pictureAPI.searchQuery =
     event.currentTarget.elements.searchQuery.value.trim();
   const inputValue = pictureAPI.searchQuery;
+  let amounItemsPage = pictureAPI.amountOfElements;
 
   pictureAPI.getPicture().then(data => {
     refs.btnLoad.style.display = 'none';
@@ -38,9 +39,9 @@ function searchPictures(event) {
       appendPicteureMarkup(data.hits);
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       refs.btnLoad.style.display = 'block';
-      // if (data.hits.length) {
-      //   refs.btnLoad.style.display = 'block';
-      // }
+      if (data.hits.length < amounItemsPage) {
+        refs.btnLoad.style.display = 'none';
+      }
       gallerySimpleLightbox.refresh();
     } else if (inputValue === '') {
       Notiflix.Notify.failure('Please enter a search term.');
