@@ -2,6 +2,7 @@ import { PictureAPI } from './js/picturePpixabayAPI.js';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import { renderPictures } from './js/renderPictures';
 
 const refs = {
   formElem: document.querySelector('.search-form'),
@@ -71,43 +72,6 @@ function addPictures() {
 function appendPicteureMarkup(hits) {
   console.log(hits);
   refs.gallery.insertAdjacentHTML('beforeend', renderPictures(hits));
-}
-
-function renderPictures(hits) {
-  const markup = hits
-    .map(
-      ({
-        largeImageURL,
-        webformatURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => `<div class="photo-card">
-                <a class="gallery-item" href="${largeImageURL}"><img class="photo" src="${webformatURL}" alt="${tags}" loading="lazy"/></a>
-                <div class="info">
-                    <p class="info-item">
-                        <b>Likes</b>
-                        <span class="info-item-api">${likes}</span>
-                    </p>
-                    <p class="info-item">
-                        <b>Views</b>
-                        <span class="info-item-api">${views}</span>
-                    </p>
-                    <p class="info-item">
-                        <b>Comments</b>
-                        <span class="info-item-api">${comments}</span>
-                    </p>
-                    <p class="info-item">
-                        <b>Downloads</b>
-                        <span class="info-item-api">${downloads}</span>
-                    </p>
-                </div>
-              </div>`
-    )
-    .join('');
-  return markup;
 }
 
 function clearGallery() {
